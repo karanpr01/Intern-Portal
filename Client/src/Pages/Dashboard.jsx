@@ -12,8 +12,8 @@ const Dashboard = () => {
     const fetchUser = async () => {
       try {
         const baseUrl = import.meta.env.VITE_API_URL;
-        // const res = await axios.get("http://localhost:5000/api/users/prem2025");
-        const res = await axios.get(`${baseUrl}/api/users/prem2025`);
+        const res = await axios.get("http://localhost:5000/api/users/prem2025");
+        // const res = await axios.get(`${baseUrl}/api/users/prem2025`);
         setUser(res.data);
       } catch (err) {
         console.error("❌ Error fetching user data:", err);
