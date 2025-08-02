@@ -4,6 +4,7 @@ import axios from "axios";
 import { Input } from "../components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 
+
 const Setting = () => {
   const [user, setUser] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -21,8 +22,9 @@ const Setting = () => {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-gray-50 relative">
-      {/* Mobile Sidebar Toggle */}
+    <div className="flex min-h-screen bg-gray-50 relative dark:bg-gray-800">
+    
+ 
       <button
         className="absolute top-4 left-4 z-50 md:hidden text-2xl"
         onClick={() => setSidebarOpen(true)}
@@ -34,7 +36,7 @@ const Setting = () => {
 
       {/* Main Content */}
       <main className="flex-1 p-6 pt-20 md:pt-6">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">⚙️ Settings</h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-6 dark:text-gray-200 ">⚙️ Settings</h1>
 
         {!user ? (
           <p className="text-gray-500">Loading user info...</p>

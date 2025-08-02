@@ -25,7 +25,7 @@ const Rewards = () => {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-gray-50 relative">
+    <div className="flex min-h-screen bg-gray-50 relative dark:bg-gray-800">
       {/* Hamburger for small screen */}
       <button
         className="absolute top-4 left-4 z-50 md:hidden text-2xl"
@@ -37,7 +37,7 @@ const Rewards = () => {
       <Sidebar isOpen={sidebarOpen} closeSidebar={() => setSidebarOpen(false)} />
 
       <main className="flex-1 p-6 pt-20 md:pt-6">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">🎁 All Rewards</h1>
+        <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-200">🎁 All Rewards</h1>
 
         {loading ? (
           <p className="text-gray-500">Loading rewards...</p>
@@ -47,11 +47,11 @@ const Rewards = () => {
               rewards.map((reward, index) => (
                 <Card key={index} className="bg-white shadow-md hover:shadow-lg transition">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-xl">
+                    <CardTitle className="flex items-center gap-2 text-xl dark:text-gray-800">
                       <span>{reward.emoji}</span> {reward.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="text-gray-600">
+                  <CardContent className="text-gray-600 dark:text-gray-800">
                     {reward.description}
                   </CardContent>
                 </Card>

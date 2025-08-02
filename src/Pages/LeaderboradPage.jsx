@@ -38,13 +38,13 @@ const Leaderboard = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-800">
       <Sidebar />
       <main className="flex-1 p-6">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">🏆 Leaderboard</h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-6 dark:text-gray-200">🏆 Leaderboard</h1>
         <Card className="overflow-x-auto shadow">
-          <table className="min-w-full text-sm text-left text-gray-700">
-            <thead className="bg-blue-100 text-gray-700 uppercase text-xs">
+          <table className="min-w-full text-sm text-left text-gray-700 bg-yellow-200 dark:text-gray-200 ">
+            <thead className="bg-blue-100 text-gray-700  dark:bg-gray-800 dark:text-gray-200 uppercase text-xs">
               <tr>
                 <th className="px-6 py-3">Rank</th>
                 <th className="px-6 py-3">Name</th>
@@ -52,9 +52,9 @@ const Leaderboard = () => {
                 <th className="px-6 py-3">Donations Raised</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y">
+            <tbody className="bg-white dark:bg-black divide-y">
               {users.map((user, index) => (
-                <tr key={user._id} className="hover:bg-gray-50 transition">
+                <tr key={user._id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
                   <td className="px-6 py-4 font-semibold">{getRankEmoji(index)}</td>
                   <td className="px-6 py-4">{user.name}</td>
                   <td className="px-6 py-4">{user.referralCode}</td>

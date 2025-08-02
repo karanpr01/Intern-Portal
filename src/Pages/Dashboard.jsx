@@ -39,8 +39,8 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-50 relative">
-      {/* Hamburger Menu for mobile */}
+    <div className="flex min-h-screen bg-gray-50 relative dark:bg-gray-800 dark:text-gray-200">
+
       <button
         className="absolute top-4 left-4 z-50 md:hidden text-2xl"
         onClick={() => setSidebarOpen(true)}
@@ -57,7 +57,7 @@ const Dashboard = () => {
     ${sidebarOpen ? "pt-20" : "pt-16"} 
      md:pt-6
   `}>
-        <h1 className="text-3xl font-bold text-gray-800">
+        <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">
           Welcome, <span className="text-blue-600">{user?.name}</span> 👋
         </h1>
 
@@ -82,11 +82,11 @@ const Dashboard = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-bold text-gray-700 mb-2">🎁 Rewards</h2>
+          <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-200 mb-2">🎁 Rewards</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {user.rewards?.length > 0 ? (
               user.rewards.map((reward, index) => (
-                <Card key={index} className="border shadow-sm bg-green-50">
+                <Card key={index} className="border shadow-sm bg-green-50 dark:bg-gray-200">
                   <CardContent className="p-4 font-medium text-green-900">
                     <div className="text-xl">
                       <span className="text-2xl">{reward.emoji}</span> {reward.title}
