@@ -9,7 +9,13 @@ await mongoose.connect(process.env.MONGO_URI);
 const dummyUser = new User({
   name: "Prem Karn",
   referralCode: "prem2025",
-  donationsRaised: "₹50,000",
+  donationsRaised: 50000,
+  rewards: [
+  "🎓 Certificate",
+  "🧢 Swags (T-shirt, Stickers)",
+  "🏆 Top Leaderboard Badge"
+]
+
 });
 
 try {

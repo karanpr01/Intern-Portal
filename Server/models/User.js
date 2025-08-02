@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
   name: String,
   referralCode: String,
-  donationsRaised: String,
+  donationsRaised: Number,
+  rewards: [String] 
 });
 
-export default mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+export default User;
