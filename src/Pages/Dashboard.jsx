@@ -52,13 +52,13 @@ const Dashboard = () => {
       <Sidebar isOpen={sidebarOpen} closeSidebar={() => setSidebarOpen(false)} />
 
       {/* Main content */}
-      <main   className={`
+      <main className={`
     flex-1 p-6 space-y-6 
     ${sidebarOpen ? "pt-20" : "pt-16"} 
      md:pt-6
   `}>
         <h1 className="text-3xl font-bold text-gray-800">
-          Welcome, <span className="text-blue-600">{user.name}</span> 👋
+          Welcome, <span className="text-blue-600">{user?.name}</span> 👋
         </h1>
 
         <div className="grid md:grid-cols-2 gap-4">
@@ -88,7 +88,10 @@ const Dashboard = () => {
               user.rewards.map((reward, index) => (
                 <Card key={index} className="border shadow-sm bg-green-50">
                   <CardContent className="p-4 font-medium text-green-900">
-                    {reward}
+                    <div className="text-xl">
+                      <span className="text-2xl">{reward.emoji}</span> {reward.title}
+                      <p className="text-sm text-gray-600">{reward.description}</p>
+                    </div>
                   </CardContent>
                 </Card>
               ))
