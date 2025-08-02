@@ -1,45 +1,81 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
-const Sidebar = ({ isOpen, closeSidebar }) => {
+const Sidebar = () => {
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const sidebarRef = useRef(null);
+
+  const menuItems = [
+    { label: "🏠 Overview", href: "/dashboard" },
+    { label: "🎁 Rewards", href: "/rewards" },
+    { label: "🏆 Leaderboard", href: "/leaderborad" },
+    { label: "⚙️ Settings", href: "/settings" },
+    { label: "🚪 Logout", href: "/" },
+  ];
+
+ 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (open && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [open]);
+
   return (
-    <aside
-      className={`
-        fixed top-0 left-0 h-full bg-white shadow-lg z-50 w-64 
-        transform ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-        transition-transform duration-300 ease-in-out 
-        md:translate-x-0 md:static md:block
-      `}
-    >
-      <div className="p-6 space-y-4 h-screen">
-        <h2 className="text-2xl font-bold text-blue-600">Intern Portal</h2>
-        <nav className="space-y-2">
-          <Link to="/dashboard" className="block text-gray-700 hover:text-blue-500">
-            📊 Overview
-          </Link>
-           <Link to="/leaderborad" className="block text-gray-700 hover:text-blue-500">
-            🔥 LeaderBoard
-          </Link>
-          <Link to="/rewards" className="block text-gray-700 hover:text-blue-500">
-            🎁 Rewards
-          </Link>
-          <Link to="/settings" className="block text-gray-700 hover:text-blue-500">
-            ⚙️ Settings
-          </Link>
-          <Link to="/" className="block text-red-500 font-semibold hover:underline">
-            🚪 Logout
-          </Link>
-        </nav>
+    <>
+       <div className="lg:hidden p-4">
+        <button onClick={() => setOpen(!open)} className="text-gray-700 focus:outline-none">
+          {open ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
 
-      {/* Close Button for mobile */}
-      <button
-        onClick={closeSidebar}
-        className="absolute top-4 right-4 md:hidden text-gray-500 hover:text-black"
+  
+      {open && <div className="fixed inset-0 bg-black bg-opacity-30 z-10 lg:hidden" />}
+
+     
+      <div
+        ref={sidebarRef}
+        className={`fixed z-20 top-0 left-0 h-full w-64 bg-white shadow-md transform transition-transform duration-300
+        ${open ? "translate-x-0" : "-translate-x-full"} 
+        lg:translate-x-0 lg:static lg:block`}
       >
-        ❌
-      </button>
-    </aside>
+      
+        <div className="flex items-center justify-between p-4 border-b lg:hidden">
+          <h1 className="font-bold text-xl">Intern Portal</h1>
+          <button onClick={() => setOpen(false)}>
+            <X size={24} />
+          </button>
+        </div>
+
+        
+        <div className="p-6 font-bold text-xl hidden lg:block border-b">Intern Portal</div>
+
+        
+        <nav className="p-4 space-y-2 h-screen">
+          {menuItems.map((item, index) => {
+            const isActive = location.pathname === item.href;
+            return (
+              <a
+                key={index}
+                href={item.href}
+                className={`block px-4 py-2 rounded transition ${
+                  isActive
+                    ? "bg-blue-600 text-white font-semibold"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+    </>
   );
 };
 
